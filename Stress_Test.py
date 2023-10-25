@@ -1,6 +1,7 @@
 import numpy as np
 from timeit import default_timer as timer
 from numba import vectorize
+import multiprocessing as mp
 from multiprocessing import Process, Lock
 import time
 
@@ -61,6 +62,7 @@ def cpu_loop(loc, process_num):
 
 
 if __name__ == '__main__':
+    mp.set_start_method('spawn')
     cpu_cores = 8
     lock = Lock()
     all_processes = []
